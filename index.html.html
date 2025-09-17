@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday nana</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #ff4da6, #7b2ff7);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 48px;
+      color: gold;
+      text-shadow: 2px 2px #000;
+      margin-top: 20px;
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      0% { text-shadow: 0 0 10px gold, 0 0 20px orange; }
+      100% { text-shadow: 0 0 20px yellow, 0 0 40px red; }
+    }
+
+    .cake {
+      width: 200px;
+      height:200px;
+      margin-top:20px;
+    }
+
+    .message {
+      font-size: 20px;
+      color: #f14fbb;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 15px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #ffcc00;
+      color: black;
+      cursor: pointer;
+      animation: glowBtn 1.5s infinite alternate;
+    }
+    @keyframes glowBtn {
+      from { box-shadow: 0 0 10px yellow; }
+      to { box-shadow: 0 0 20px orange; }
+    }
+
+    #surprise {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #surprise img {
+      width: 200px;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px gold;
+      transition: transform 0.3s;
+    }
+    #surprise img:hover { transform: scale(1.05); }
+
+    /* HEARTS */
+    .heart {
+      position: fixed;
+      bottom: -50px;
+      font-size: 24px;
+      animation-name: floatUp;
+      animation-timing-function: linear;
+      animation-fill-mode: forwards;
+      opacity: 0.9;
+      z-index: 1000;
+      pointer-events: none;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+    .balloon {
+            width: 500px;
+            height: auto;
+            position: absolute;
+            top: 350px;
+            left: 20px;
+        }
+
+    .balloon {
+        animation: floatBalloon 2s ease-in-out infinite;
+    }
+    @keyframes floatBalloon {
+            0%,100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+        }
+         @media (max-width: 768px) {
+            .balloon {
+                max-width: 100px;
+                left: 2%;
+                top: 350px;
+            }
+        }
+
+  </style>
+</head>
+<body>
+  <h1><img src="cake1.png">Happy Birthday Kannaya💝<img src="cake2.png"></h1>
+  <img class="cake" src="chintucake.png">
+  <img class="balloon" src="balloon.png" alt="balloon">
+  <div class="message">
+    <p>
+      Dear Montie💞,<br>
+    On this special day, I just want to say how lucky I am to have a best friend like you.
+    Your kindness🤗, support💚, and friendship mean the world to me.<br><br>
+    Wishing you joy, success, and endless smiles today and always! 🎉💙
+    Happy Birthday to my Kannaya 🎂🎉💖💝💓💞.
+    You are one of the best people in my entire life 🌟💖💘.
+    I can't imagine my life without you 🤗💗💖.
+    Your presence makes me happy 😊💛💝💖.
+    Your care makes me feel comfortable 🫶💞💖.
+    When you talk to another girl, it makes me jealous 😅💚💖💗.
+    You don't know how much I like you ❤️💘💝💖.
+    We are like Tom and Jerry 🐱🐭💖 — Tom fights with Jerry just like Ammu fights with Kannaya, but our bond will never break 💪💞💝💖.
+
+    </p>
+  </div>
+
+  <button class="btn" onclick="toggleSurprise()" id="toggleBtn">Click for Surprise🎁</button>
+  <br>
+  <br>
+  <div id="surprise">
+    <h2>🎁 You are the BEST, Chintu!🫶 </h2>
+    <p>From your best friend, Ammu 💙</p>
+    <h1>💞</h1>
+    <img src="chintu.png" alt="cute pic 1">
+    <img src="chintu1.png" alt="cute pic 2">
+    <img src="chintu2.png" alt="cute pic 3">
+  </div>
+
+  <script>
+    let heartsInterval; // to store interval ID
+
+    function toggleSurprise() {
+      const surprise = document.getElementById('surprise');
+      const btn = document.getElementById('toggleBtn');
+
+      if (surprise.style.display === 'none' || surprise.style.display === '') {
+        surprise.style.display = 'block';
+        btn.textContent = 'Hide Surprise';
+        startHearts();
+      } else {
+        surprise.style.display = 'none';
+        btn.textContent = 'Click for Surprise';
+        stopHearts();
+      }
+    }
+
+    function startHearts() {
+      // clear any existing interval first
+      stopHearts();
+      // create hearts every 200ms
+      heartsInterval = setInterval(() => {
+        createHeart();
+      }, 200);
+    }
+
+    function stopHearts() {
+      clearInterval(heartsInterval);
+    }
+
+    function createHeart() {
+      let heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+  </script>
+</body>
+</html>
